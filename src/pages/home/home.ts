@@ -9,6 +9,7 @@ import { NewNotePage } from '../../pages/new-note/new-note'
 import { NoteDetailsPage } from '../../pages/note-details/note-details' 
 import { Storage } from '@ionic/storage'; // for retrieving notes from local database
 import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth';
+import { Toast } from '@ionic-native/toast';
 
 @Component({
   selector: 'page-home',
@@ -64,7 +65,8 @@ export class HomePage {
   constructor(public navCtrl: NavController,
    public modalCtrl : ModalController,
    private storage : Storage,
-   private androidFingerprintAuth: AndroidFingerprintAuth
+   private androidFingerprintAuth: AndroidFingerprintAuth,
+   private toast: Toast
     ) {
     this.notes = [];
     // retrieve notes from database
@@ -87,8 +89,22 @@ export class HomePage {
            if (result.withFingerprint) {
                console.log('Successfully encrypted credentials.');
                console.log('Encrypted credentials: ' + result.token);
+
+               // Show toast on success
+             this.toast.show(`Authentication successful!`, '5000', 'bottom').subscribe(toast => {
+              console.log(toast);
+            });
+
            } else if (result.withBackup) {
              console.log('Successfully authenticated with backup password!');
+
+             // Show toast on success
+             this.toast.show(`Authentication successful!`, '5000', 'bottom').subscribe(
+  toast => {
+    console.log(toast);
+  }
+);
+
            } else console.log('Didn\'t authenticate!');
         })
         .catch(error => {
