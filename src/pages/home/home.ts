@@ -80,8 +80,37 @@ export class HomePage {
     this.retrieveNotesFromDb();
 
     // this.titles = [];
+    
     this.authenticate();
-    this.getCurrentLocation();
+    // this.getCurrentLocation(); // to get current position
+    this.keepUpdatingLocation(); // to keep polling for updated location
+
+  }
+
+  keepUpdatingLocation(){
+
+    var options = {
+      enableHighAccuracy: true,
+      timeout: Infinity, // default, will poll forever,
+      maximumAge: 0 // default, will never accept a cached location
+
+    };
+
+    let watch = this.geolocation.watchPosition(options).subscribe((data) => {
+
+ // data can be a set of coordinates, or an error (if an error occurred).
+ // data.coords.latitude
+ // data.coords.longitude
+
+   this.latitude = data.coords.latitude;
+   this.longitude = data.coords.longitude;
+   this.accuracy = data.coords.accuracy;
+
+});
+
+   
+    // stop updating location after 10 seconds.
+    // watch.unsubscribe();
 
   }
 
