@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage'; // for adding to local database
 // import * as localForage from "localforage";
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 /**
  * Generated class for the NoteDetailsPage page.
@@ -46,7 +47,7 @@ export class NoteDetailsPage {
 
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage : Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage : Storage, private localNotifications: LocalNotifications) {
 
   	// this.note = [];
 
@@ -87,6 +88,16 @@ export class NoteDetailsPage {
   		var note = { "title":this.title, "note":this.note};
   		this.storage.set('' + keyToUse, note);
   		console.log('Saved note to database');
+
+  		// Display notification when note saved succesfully
+  		// Schedule a single notification
+this.localNotifications.schedule({
+  id: keyToUse,
+  text: 'Your note has been saved to the database successfully!',
+  // sound: isAndroid? 'file://sound.mp3': 'file://beep.caf',
+  // data: { secret: "secret" }
+});
+
 
   		// Retrieving
   		console.log(// Or to get a key/value pair

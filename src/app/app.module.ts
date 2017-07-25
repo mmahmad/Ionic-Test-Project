@@ -13,6 +13,7 @@ import { NoteDetailsPage} from '../pages/note-details/note-details'
 import { IonicStorageModule } from '@ionic/storage';
 import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth';
 import { Toast } from '@ionic-native/toast';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { Toast } from '@ionic-native/toast';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AndroidFingerprintAuth,
-    Toast
+    Toast,
+    LocalNotifications
   ]
 })
 export class AppModule {}
