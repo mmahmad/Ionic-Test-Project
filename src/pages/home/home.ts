@@ -10,6 +10,7 @@ import { NoteDetailsPage } from '../../pages/note-details/note-details'
 import { Storage } from '@ionic/storage'; // for retrieving notes from local database
 import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth';
 import { Toast } from '@ionic-native/toast';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @Component({
   selector: 'page-home',
@@ -57,6 +58,10 @@ export class HomePage {
 
 	public tap: number = 0;
   private notes: Array<any>;
+  public latitude : any;
+  public longitude : any;
+  public accuracy : any;
+
   // private titles: Array<string>;
   
 
@@ -66,7 +71,8 @@ export class HomePage {
    public modalCtrl : ModalController,
    private storage : Storage,
    private androidFingerprintAuth: AndroidFingerprintAuth,
-   private toast: Toast
+   private toast: Toast,
+   private geolocation: Geolocation
     ) {
     this.notes = [];
     // retrieve notes from database
@@ -75,6 +81,35 @@ export class HomePage {
 
     // this.titles = [];
     this.authenticate();
+    this.getCurrentLocation();
+
+  }
+
+
+  getCurrentLocation(){
+
+    var options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
+    // this.geolocation.getCurrentPosition(this.success, this.error, options);
+
+
+    this.geolocation.getCurrentPosition().then((resp) => {
+      // var crd = resp.coords;
+      this.latitude = resp.coords.latitude;
+      this.longitude = resp.coords.longitude;
+      this.accuracy = resp.coords.accuracy;
+
+ // resp.coords.latitude
+ // resp.coords.longitude
+}).catch((error) => {
+  console.log('Error getting location', error);
+});
+
+
 
   }
 

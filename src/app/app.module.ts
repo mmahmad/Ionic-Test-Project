@@ -14,6 +14,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth';
 import { Toast } from '@ionic-native/toast';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { Geolocation } from '@ionic-native/geolocation';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AndroidFingerprintAuth,
     Toast,
-    LocalNotifications
+    LocalNotifications,
+    Geolocation
   ]
 })
 export class AppModule {}
