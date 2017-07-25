@@ -6,25 +6,46 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { SecondPage } from '../pages/second/second';
+import { ModalContentPage } from '../pages/modal-content/modal-content'
+import { NewNotePage } from '../pages/new-note/new-note'
+import { NoteDetailsPage} from '../pages/note-details/note-details'
+import { IonicStorageModule } from '@ionic/storage';
+import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth';
+
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    SecondPage,
+    ModalContentPage,
+    NewNotePage,
+    NoteDetailsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot({
+
+      name: '__mydb',
+      driverOrder: ['indexeddb','websql','sqlite']
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    SecondPage,
+    ModalContentPage,
+    NewNotePage,
+    NoteDetailsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AndroidFingerprintAuth
   ]
 })
 export class AppModule {}

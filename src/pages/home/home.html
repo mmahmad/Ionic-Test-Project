@@ -1,14 +1,137 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      My Notes
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  
+
+<ion-fab bottom right>
+  <button ion-fab (tap)="tapEvent($event)" right bottom><ion-icon name="add"></ion-icon></button>
+</ion-fab>
+
+
+<!-- <ion-list id="notelist" > -->
+
+  <ion-list>
+    <!-- <ion-item *ngFor="let note of notes" (tap)="noteTapped(note)">Title: {{note.noteTitle}}
+    <br/>
+    Note: {{note.noteDescription}}</ion-item> -->
+
+    <ion-item *ngFor="let note of notes">
+
+    <button (tap)="noteTapped(note)" style="background: rgba(0,0,0,0);">
+    Title: {{note.noteTitle}}<br/>Note: {{note.noteDescription}}      
+    </button>
+   <!-- <ion-item > -->
+   
+   <button (tap)="deleteNote(note)" style="background: rgba(0,0,0,0); position: absolute;
+right: 0;">Delete</button>
+
+    <!-- </ion-item> -->
+  </ion-item>
+
+
+  </ion-list>
+  
+
+
+  
+  
+  <!-- ion-item>
+    1
+  </ion-item>
+
+  <ion-item>
+    2
+  </ion-item>
+
+  <ion-item>
+    3
+  </ion-item> -->
+
+<!-- </ion-list> -->
+
+<!-- <ion-list>
+  <ion-item>
+    <ion-label color="primary">Inline Label</ion-label>
+    <ion-input placeholder="Text Input"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary" fixed>Fixed Label</ion-label>
+    <ion-input type="tel" placeholder="Tel Input"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input type="number" placeholder="Number Input with no label"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary" stacked>Stacked Label</ion-label>
+    <ion-input type="email" placeholder="Email Input"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary" stacked>Stacked Label</ion-label>
+    <ion-input type="password" placeholder="Password Input"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary" floating>Floating Label</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input placeholder="Clear Input" clearInput></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-textarea placeholder="Enter a description"></ion-textarea>
+  </ion-item>
+</ion-list> -->
+
+<!-- 
+
+<p>
+Tapped = {{tap}} times
+</p> -->
+
+
+
+ <!--  <ion-list>
+    <ion-list-header>
+      Hobbits
+    </ion-list-header>
+    <a ion-item (click)="openModal({charNum: 0})">
+      Gollum
+    </a>
+    <a ion-item (click)="openModal({charNum: 1})">
+      Frodo Baggins
+    </a>
+    <a ion-item (click)="openModal({charNum: 2})">
+      Sam
+    </a>
+  </ion-list> -->
+
+
+    
+
+    
+  <!-- <ion-fab bottom right >
+  <button ion-fab>Share</button>
+  <ion-fab-list side="top">
+    <button ion-fab>Facebook</button>
+    <button ion-fab>Twitter</button>
+    <button ion-fab>Youtube</button>
+  </ion-fab-list>
+  <ion-fab-list side="left">
+    <button ion-fab>Vimeo</button>
+  </ion-fab-list>
+</ion-fab> -->
+  
+
 </ion-content>
